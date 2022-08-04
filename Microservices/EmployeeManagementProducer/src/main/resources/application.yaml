@@ -1,0 +1,28 @@
+server:
+  port: 10000
+spring:
+  kafka:
+    producer:
+      bootstrap-servers: ${KAFKA_DOMAIN}:${KAFKA_PORT}
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      acks: all
+      retries: 10
+    ssl:
+      key-password: ${KEY_STORE_PASSWORD}
+      trust-store-location: ${TRUST_STORE_FILE}
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:failed_employee_records
+    username: sa
+    password:
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+    generate-ddl: true
+    open-in-view: false
+management:
+  endpoints:
+    web:
+      base-path: /empproducer

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: elk-learning
+  name: empproducer-config
+  labels:
+    name: empproducer-config
+data:
+  KAFKA_DOMAIN: kafka-headless.default.svc.cluster.local
+  KAFKA_PORT: "9092"
+  LOG_PATH: /SharedFolder/applicationlogs/

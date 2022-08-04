@@ -1,0 +1,35 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: elk-learning
+  name: elk-learning-ingress
+  labels:
+    name: elk-learning-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/use-regex: "true"
+spec:
+  rules:
+  - host: emp-local.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: /.* 
+        backend:
+          service:
+            name: empproducer-service
+            port: 
+              number: 10000
+      - pathType: Prefix
+        path: /empproducer/.* 
+        backend:
+          service:
+            name: empproducer-service
+            port: 
+              number: 10000
+      - pathType: Prefix
+        path: /empconsumer/.* 
+        backend:
+          service:
+            name: empconsumer-service
+            port: 
+              number: 10001
