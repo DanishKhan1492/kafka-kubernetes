@@ -9,9 +9,9 @@ env:
 on:
   workflow_run:
     workflows:
-      - "Build And Push Docker Image to Docker Hub"
+      - Build And Push Docker Image to Docker Hub
     types:
-      - "completed"
+      - completed
 
 jobs:
   deployToOcpSandbox:

@@ -23,7 +23,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
 
-    - name: Build with Maven
+    - name: Build Producer with Maven
       run: |
         pwd
         cd Microservices/EmployeeManagementProducer/ && mvn -B package --file pom.xml
@@ -31,11 +31,11 @@ jobs:
     - name: Docker Build and Push
       uses: docker/build-push-action@v3
       with:
-        context: .
+        context: ~/work/kafka-kubernetes/kafka-kubernetes/Microservices/EmployeeManagementProducer/
         push: true
         tags: danishkyndryl/learningapis:empproducer
 
-    - name: Build with Maven
+    - name: Build Consumer with Maven
       run: |
         pwd
         cd ../EmployeeManagementConsumer && mvn -B package --file pom.xml
@@ -43,7 +43,7 @@ jobs:
     - name: Docker Build and Push
       uses: docker/build-push-action@v3
       with:
-        context: .
+        context: ~/work/kafka-kubernetes/kafka-kubernetes/Microservices/EmployeeManagementConsumer/
         push: true
         tags: danishkyndryl/learningapis:empconsumer
     
