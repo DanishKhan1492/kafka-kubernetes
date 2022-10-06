@@ -38,7 +38,7 @@ jobs:
     - name: Build Consumer with Maven
       run: |
         pwd
-        cd ../EmployeeManagementConsumer && mvn -B package --file pom.xml
+        cd Microservices/EmployeeManagementConsumer && mvn -B package --file pom.xml
     
     - run: pwd
 
