@@ -40,8 +40,9 @@ jobs:
         pwd
         cd ../EmployeeManagementConsumer && mvn -B package --file pom.xml
     
+    - run: pwd
+
     - name: Docker Build and Push
-      run: pwd
       uses: docker/build-push-action@v3
       with:
         context: Microservices/EmployeeManagementConsumer/
