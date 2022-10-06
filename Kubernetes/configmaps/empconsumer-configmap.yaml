@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: elk-learning
+  name: empconsumer-config
+  labels:
+    name: empconsumer-config
+data:
+  KAFKA_DOMAIN: kafka-headless.default.svc.cluster.local
+  KAFKA_PORT: "9092"
+  MYSQL_DOMAIN: mysql-service.poc.svc.cluster.local
+  MYSQL_PORT: "3306"
+  LOG_PATH: /SharedFolder/applicationlogs/

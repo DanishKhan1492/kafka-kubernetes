@@ -1,0 +1,47 @@
+
+name: Deploy the Application to OpenShift using Helm
+
+env:
+  OPENSHIFT_SERVER: ${{ secrets.OPENSHIFT_SERVER }}
+  OPENSHIFT_TOKEN: ${{ secrets.OPENSHIFT_TOKEN }}
+  OPENSHIFT_NAMESPACE: ${{ secrets.NAMESPACE }}
+
+on:
+  workflow_run:
+    workflows:
+      - "Build And Push Docker Image to Docker Hub"
+    types:
+      - "completed"
+
+jobs:
+  deployToOcpSandbox:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Helm Chart
+      uses: actions/checkout@v3
+      with:
+        repository: ocp-poc-helm-chart
+        path: ocp-poc-helm
+    - run: |
+          cd ocp-poc-helm
+
+    
+
+    - name: Install oc
+      uses: redhat-actions/openshift-tools-installer@v1
+      with:
+        oc: 4
+    
+    - name: Log in to OpenShift
+      uses: redhat-actions/oc-login@v1
+      with:
+        openshift_server_url: ${{ env.OPENSHIFT_SERVER }}
+        openshift_token: ${{ env.OPENSHIFT_TOKEN }}
+        insecure_skip_tls_verify: true
+        namespace: ${{ env.OPENSHIFT_NAMESPACE }}
+
+    - name: Deploy
+      uses: WyriHaximus/github-action-helm3@v2
+      with:
+        exec: helm upgrade ocp-poc . --install --wait --atomic --namespace=${{ env.OPENSHIFT_NAMESPACE }} --set=app.name=${{ env.OPENSHIFT_NAMESPACE }}
+    
