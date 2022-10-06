@@ -23,11 +23,10 @@ jobs:
         distribution: 'temurin'
         cache: maven
 
-    - run: | 
-          cd ./Microservices/EmployeeManagementProducer/
-
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      run: |
+        cd ./Microservices/EmployeeManagementProducer/
+        mvn -B package --file pom.xml
 
     - name: Docker Build and Push
       uses: docker/build-push-action@v3
@@ -35,11 +34,11 @@ jobs:
         context: .
         push: true
         tags: danishkyndryl/learningapis:empproducer
-    - run: |
-          cd ../EmployeeManagementConsumer
 
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      run: |
+        cd ../EmployeeManagementConsumer
+        mvn -B package --file pom.xml
     
     - name: Docker Build and Push
       uses: docker/build-push-action@v3
