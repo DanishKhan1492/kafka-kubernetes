@@ -11,11 +11,11 @@ import org.springframework.stereotype.Service;
 public class StatusProducer {
 
     private static final String STATUS_TOPIC = "record-status-topic";
-    private final KafkaTemplate<String, String> kafkaTemplate;
+    private final KafkaTemplate<String, Object> kafkaTemplate;
 
     private final ObjectMapper objectMapper;
 
-    StatusProducer(KafkaTemplate<String, String> kafkaTemplate, ObjectMapper objectMapper) {
+    StatusProducer(KafkaTemplate<String, Object> kafkaTemplate, ObjectMapper objectMapper) {
         this.kafkaTemplate = kafkaTemplate;
         this.objectMapper = objectMapper;
     }
@@ -26,7 +26,7 @@ public class StatusProducer {
         statusData.put("action", action);
         statusData.put("actual-data", objectMapper.writeValueAsString(data));
         statusData.put("email", email);
-        kafkaTemplate.send(STATUS_TOPIC, objectMapper.writeValueAsString(statusData));
+        kafkaTemplate.send(STATUS_TOPIC, statusData);
     }
 
 }

@@ -23,10 +23,10 @@ public class Contact {
     @Column(name = "contact_id", nullable = false)
     private Integer contactId;
 
-    @Column(name = "contact_type", nullable = false, length = 50)
+    @Column(name = "contact_type", length = 50)
     private String contactType;
 
-    @Column(name = "contact", nullable = false, length = 200)
+    @Column(name = "contact", length = 200)
     private String contactValue;
 
     @OneToMany(mappedBy = "contact")

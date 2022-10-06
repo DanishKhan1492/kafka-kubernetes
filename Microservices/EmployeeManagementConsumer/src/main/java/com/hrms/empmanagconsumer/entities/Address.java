@@ -23,7 +23,7 @@ public class Address {
     @Column(name = "address_id", nullable = false)
     private Integer addressId;
 
-    @Column(name = "address1", nullable = false, length = 1000)
+    @Column(name = "address1", length = 1000)
     private String address1;
 
     @Column(name = "address2", length = 1000)
