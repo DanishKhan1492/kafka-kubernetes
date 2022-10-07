@@ -40,7 +40,7 @@ jobs:
     - uses: docker-practice/actions-setup-docker@master
     - run: |
         docker version  
-        docker login -u openshift -p ${{ env.OPENSHIFT_TOKEN }} na.artifactory.taas.kyndryl.net  
+        docker login -u openshift -p ${{ env.OPENSHIFT_TOKEN }} https://na.artifactory.taas.kyndryl.net  
         
 
     - name: Deploy
