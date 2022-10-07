@@ -34,7 +34,7 @@ jobs:
       with:
         context: ./Microservices/EmployeeManagementProducer/
         push: true
-        tags: hwsw-cms-lite-docker-local/empproducer
+        tags: na.artifactory.taas.kyndryl.net/hwsw-cms-lite-docker-local/empproducer:latest
 
     - name: Build Consumer with Maven
       run: |
@@ -48,5 +48,5 @@ jobs:
       with:
         context: ./Microservices/EmployeeManagementConsumer/
         push: true
-        tags: hwsw-cms-lite-docker-local/empconsumer
+        tags: na.artifactory.taas.kyndryl.net/hwsw-cms-lite-docker-local/empconsumer:latest
     
