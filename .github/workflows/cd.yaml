@@ -37,9 +37,11 @@ jobs:
         insecure_skip_tls_verify: true
         namespace: ${{ env.OPENSHIFT_NAMESPACE }}
 
+    - uses: docker-practice/actions-setup-docker@master
+
     - name: Deploy
       uses: WyriHaximus/github-action-helm3@v2
       with:
         exec: |
-          docker login -u openshift -p ${{ env.OPENSHIFT_TOKEN }} na.artifactory.taas.kyndryl.net && helm upgrade ocp-poc ocp-poc-helm/ --install --wait --atomic --namespace=${{ env.OPENSHIFT_NAMESPACE }} --set=app.name=${{ env.OPENSHIFT_NAMESPACE }}
+          docker version && docker login -u openshift -p ${{ env.OPENSHIFT_TOKEN }} na.artifactory.taas.kyndryl.net && helm upgrade ocp-poc ocp-poc-helm/ --install --wait --atomic --namespace=${{ env.OPENSHIFT_NAMESPACE }} --set=app.name=${{ env.OPENSHIFT_NAMESPACE }}
     
