@@ -34,7 +34,7 @@ jobs:
       with:
         context: ./Microservices/EmployeeManagementProducer/
         push: true
-        tags: danishkyndryl/learningapis:empproducer
+        tags: hwsw-cms-lite-docker-local/empproducer
 
     - name: Build Consumer with Maven
       run: |
@@ -48,5 +48,5 @@ jobs:
       with:
         context: ./Microservices/EmployeeManagementConsumer/
         push: true
-        tags: danishkyndryl/learningapis:empconsumer
+        tags: hwsw-cms-lite-docker-local/empconsumer
     
